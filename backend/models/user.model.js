@@ -2,7 +2,8 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
 
 const userSchema = new mongoose.Schema({
-    userName: { type: String, required: true, trim: true, unique: true },
+    firstName: { type: String, required: true, trim: true},
+    lastName: { type: String, required: true, trim: true},
     email: { type: String, unique: true, required: true, trim: true },
     password: { type: String, required: true, trim: true }
 })
@@ -18,3 +19,7 @@ userSchema.pre("save", function(next){
         })
     }
 })
+
+const userModel = mongoose.models.user_tbs || mongoose.model("Users Data", userSchema)
+
+module.exports = userModel
