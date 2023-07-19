@@ -20,6 +20,6 @@ userSchema.pre("save", function(next){
     }
 })
 
-const userModel = mongoose.models.user_tbs || mongoose.model("Users Data", userSchema)
+const userModel = mongoose.models.user_tbs || mongoose.model("Users_Data", userSchema)
 
 module.exports = userModel
