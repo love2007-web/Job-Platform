@@ -22,6 +22,7 @@ const Login = () => {
       .then((response) => {
         console.log(response);
         alert(response.data.message);
+        navigate("/usersetup")
       })
       .catch((err) => {
         console.log(err);

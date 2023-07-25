@@ -24,6 +24,7 @@ const Signup = () => {
       .then((response) => {
         console.log(response);
         alert(response.data.message);
+        localStorage.setItem("email", values.email)
         navigate('/login')
       })
       .catch((err) => {
