@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true, trim: true },
   password: { type: String, required: true, trim: true },
   selectedSkills: { type: [String], default: [] },
+  registrationDate: {type: Date, default:Date.now()}
 });
 
 let saltRound = 10
@@ -19,6 +20,11 @@ userSchema.pre("save", function(next){
             console.log(error);
         })
     }
+})
+
+const conmapySchema = new mongoose.Schema({
+    companyName: {type: String, required: true, trim: true},
+    
 })
 
 const userModel = mongoose.models.user_tbs || mongoose.model("Users_Data", userSchema)

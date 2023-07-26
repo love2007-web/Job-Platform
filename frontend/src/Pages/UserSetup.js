@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 
 const JobForm = () => {
+  const navigate = useNavigate()
   // useEffect(() => {
   //     const fetchData = async () => {
   //         const options = {
@@ -104,6 +106,7 @@ const JobForm = () => {
       .then((response) => {
         console.log(response);
         alert(response.data.message);
+        navigate("/userdashboard")
       })
       .catch((err) => {
         console.log(err);
