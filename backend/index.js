@@ -4,6 +4,7 @@ const cors = require("cors")
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const userRoutes = require("./routes/userRoute")
+const companyRoute = require("./routes/companyRoute")
 
 dotenv.config()
 const app = express()
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: "*" }))
 app.use("/users", userRoutes)
+app.use("/company", companyRoute)
 
 
 const port = process.env.PORT
