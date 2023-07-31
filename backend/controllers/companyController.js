@@ -35,7 +35,7 @@ const login = async (req, res) => {
     if (isMatch) {
       return res
         .status(200)
-        .send({ message: `Welcome, ${user.companyName}`, status: true });
+        .send({ message: `${user.companyName}`, status: true });
     }
     return res.status(401).send({ message: "Invalid Password", status: false });
   } catch (error) {

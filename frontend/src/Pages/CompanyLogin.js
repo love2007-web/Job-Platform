@@ -21,9 +21,11 @@ const CompanyLogin = () => {
       .post(uri, data)
       .then((response) => {
         console.log(response);
-        alert(response.data.message);
-        localStorage.setItem("email", values.email);
-        navigate("/companydashboard");
+        alert(`Welcome ${response.data.message}`);
+        console.log(data.companyEmail);
+        localStorage.setItem("email", data.companyEmail);
+        localStorage.setItem("CurCompany", response.data.message)
+        // navigate("/companydashboard");
       })
       .catch((err) => {
         console.log(err);
