@@ -3,7 +3,27 @@
 }
 
 .dropdown:hover .dropdown-menu {
+  animation: fadeInDown .3s;
   display: block;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu {
+top: 3rem;
+}
+
+.drop{
+  width: 430px;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

@@ -10,6 +10,7 @@ import UserDashboard from './Pages/UserDashboard';
 import CompanySignup from './Pages/CompanySignup';
 import CompanyLogin from './Pages/CompanyLogin';
 import CompanyDashboard from './Pages/CompanyDashboard';
+import PostJob from './Pages/PostJob';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/companysignup' element={<CompanySignup/>}/>
           <Route path='/companylogin' element={<CompanyLogin/>}/>
           <Route path='/companydashboard' element={<CompanyDashboard/>}/>
+          <Route path='/createjob' element={<PostJob/>}/>
         </Routes>
       </BrowserRouter>
     </>

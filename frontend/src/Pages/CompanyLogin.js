@@ -25,7 +25,7 @@ const CompanyLogin = () => {
         console.log(data.companyEmail);
         localStorage.setItem("email", data.companyEmail);
         localStorage.setItem("CurCompany", response.data.message)
-        // navigate("/companydashboard");
+        navigate("/companydashboard");
       })
       .catch((err) => {
         console.log(err);
