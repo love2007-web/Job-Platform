@@ -44,8 +44,22 @@ companySchema.pre("save", function (next) {
   }
 });
 
+const jobSchema = new mongoose.Schema({
+  jobTitle: { type: String, required: true, trim: true },
+  location: { type: String, required: true, trim: true },
+  category: { type: String, required: true, trim: true },
+  jobDescription: { type: String, required: true, trim: true },
+  experience: { type: String, required: true, trim: true },
+  careerLevel: { type: String, required: true, trim: true },
+  employmentType: { type: String, required: true, trim: true },
+  salaryRange: { type: String, required: true, trim: true },
+  user: {type: String, required: true, trim: true}
+});
+
+const jobModel = mongoose.models.job_tbs || mongoose.model("Jobs", jobSchema)
+
 const companyModel =
   mongoose.models.company_tbs || mongoose.model("Company_Data", companySchema);
 const userModel = mongoose.models.user_tbs || mongoose.model("Users_Data", userSchema)
 
-module.exports = { userModel, companyModel };
+module.exports = { userModel, companyModel, jobModel };

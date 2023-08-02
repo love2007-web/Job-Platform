@@ -1,4 +1,4 @@
-const { companyModel } = require("../models/user.model");
+const { companyModel, jobModel } = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
@@ -43,4 +43,42 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const createjob = async (req, res)=>{
+  try {
+    const {
+      jobTitle,
+      location,
+      category,
+      jobDescription,
+      experience,
+      careerLevel,
+      employmentType,
+      salaryRange,
+      user,
+    } = req.body;
+    console.log(req.body);
+
+    const newJob = new jobModel({
+      jobTitle,
+      location,
+      category,
+      jobDescription,
+      experience,
+      careerLevel,
+      employmentType,
+      salaryRange,
+      user,
+    });
+
+    const result = await newJob.save();
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      message: "Job Published successfully!",
+    });
+  } catch (error) {
+    
+  }
+}
+
+module.exports = { register, login, createjob };
