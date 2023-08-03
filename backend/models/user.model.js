@@ -53,7 +53,8 @@ const jobSchema = new mongoose.Schema({
   careerLevel: { type: String, required: true, trim: true },
   employmentType: { type: String, required: true, trim: true },
   salaryRange: { type: String, required: true, trim: true },
-  user: {type: String, required: true, trim: true}
+  user: { type: String, required: true, trim: true },
+  datePosted: { type: Date, default: Date.now() },
 });
 
 const jobModel = mongoose.models.job_tbs || mongoose.model("Jobs", jobSchema)

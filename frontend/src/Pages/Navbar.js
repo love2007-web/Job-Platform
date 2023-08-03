@@ -4,7 +4,7 @@ import "./Navbar.css"
 const Navbar = () => {
   return (
     <>
-      <nav className="container-fluid shadow-xl pt-2 flex items-center justify-around">
+      <nav className="w-full shadow-xl pt-2 flex items-center justify-around">
         <div className="flex items-center">
           <img
             className="w-9"
@@ -124,7 +124,6 @@ const Navbar = () => {
         </div>
         <div className="w-36 bg-red-600"></div>
       </nav>
-      ;
     </>
   );
 };

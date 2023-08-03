@@ -1,11 +1,13 @@
 import React from 'react'
 import { useFormik } from "formik";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 import CompanyNavbar from './CompanyNavbar'
 
 const PostJob = () => {
+  const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false);
     const user = localStorage.getItem("email")
     const onSubmit = (values)=>{
@@ -22,7 +24,20 @@ const PostJob = () => {
             user: user
         }
         const uri = "http://localhost:5000/company/createjob";
-        axios.post(uri, data)
+        axios
+          .post(uri, data)
+          .then((response) => {
+            console.log(response);
+            alert(response.data.message);
+            navigate("/postedjobs")
+          })
+          .catch((err) => {
+            console.log(err);
+            alert(err.response.data.message);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
     }
     const { handleSubmit, handleChange, errors, touched, handleBlur, values } =
       useFormik({

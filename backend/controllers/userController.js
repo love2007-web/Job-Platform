@@ -33,7 +33,7 @@ const login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password)
         // const token = generateToken(email)
         if (isMatch) {
-            return res.status(200).send({ message: `Welcome, ${user.firstName}`, status: true, })
+            return res.status(200).send({user})
         }
         return res.status(401).send({ message: "Invalid Password", status: false })
     } catch (error) {

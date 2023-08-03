@@ -77,8 +77,19 @@ const createjob = async (req, res)=>{
       message: "Job Published successfully!",
     });
   } catch (error) {
-    
+    console.log(error);
+    res.status(500).json({ success: false, message: "Error Publishing Job" });
   }
 }
 
-module.exports = { register, login, createjob };
+const fetchjobs = async (req, res)=>{
+    try {
+      const { email } = req.body
+      const jobs = await jobModel.find({user: email})
+      res.status(200).send(jobs)
+    } catch (error) {
+      
+    }
+}
+
+module.exports = { register, login, createjob, fetchjobs };

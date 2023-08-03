@@ -21,7 +21,8 @@ const Login = () => {
       .post(uri, data)
       .then((response) => {
         console.log(response);
-        alert(response.data.message);
+        alert(`Welcome ${response.data.user.firstName}`);
+        localStorage.setItem("CurrUser", response.data.user.firstName);
         navigate("/usersetup")
       })
       .catch((err) => {
