@@ -23,7 +23,11 @@ const Login = () => {
         console.log(response);
         alert(`Welcome ${response.data.user.firstName}`);
         localStorage.setItem("CurrUser", response.data.user.firstName);
-        navigate("/usersetup")
+        localStorage.setItem(
+          "Skills",
+          JSON.stringify(response.data.user.selectedSkills)
+        );
+        // navigate("/usersetup")
       })
       .catch((err) => {
         console.log(err);

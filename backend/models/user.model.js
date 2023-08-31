@@ -47,7 +47,7 @@ companySchema.pre("save", function (next) {
 const jobSchema = new mongoose.Schema({
   jobTitle: { type: String, required: true, trim: true },
   location: { type: String, required: true, trim: true },
-  category: { type: String, required: true, trim: true },
+  requiredSkills: { type: [String], required: true, trim: true },
   jobDescription: { type: String, required: true, trim: true },
   experience: { type: String, required: true, trim: true },
   careerLevel: { type: String, required: true, trim: true },

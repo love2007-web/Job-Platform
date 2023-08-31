@@ -6,7 +6,55 @@ import * as yup from "yup";
 import axios from "axios";
 import CompanyNavbar from './CompanyNavbar'
 
+// const skillsList = ['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5'];
 const PostJob = () => {
+   const [isOpen, setIsOpen] = useState(false);
+   const [inputValue, setInputValue] = useState("");
+   const [selectedSkills, setSelectedSkills] = useState([]);
+
+   const handleInputChange = (e) => {
+     setInputValue(e.target.value);
+   };
+
+   const handleInputClick = () => {
+     setIsOpen(!isOpen);
+   };
+
+   const handleSkillSelect = (skill) => {
+     setSelectedSkills((prevSkills) => [...prevSkills, skill]);
+     setInputValue("");
+     setIsOpen(false);
+   };
+
+   const handleRemoveSkill = (skill) => {
+     setSelectedSkills((prevSkills) => prevSkills.filter((s) => s !== skill));
+   };
+
+   const skillsList = [
+     "JavaScript",
+     "Python",
+     "Java",
+     "HTML",
+     "CSS",
+     "React",
+     "Node.js",
+     "Angular",
+     "PHP",
+     "Laravel",
+     "Bootstrap",
+     "Tailwind CSS",
+     "Machine Learning",
+     "Automation",
+     "Data Analysis",
+     "C++",
+     "C#",
+     ".Net",
+     "Junior Frontend Developer",
+     "Senior Frontend Developer",
+     "Junior Backend Developer",
+     "Senior Backend Developer",
+     "Web Developer",
+   ];
   const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false);
     const user = localStorage.getItem("email")
@@ -15,7 +63,7 @@ const PostJob = () => {
         const data = {
             jobTitle: values.jobTitle,
             location: values.location,
-            category: values.category,
+            requiredSkills: selectedSkills,
             jobDescription: values.jobDescription,
             experience: values.experience,
             careerLevel: values.careerLevel,
@@ -44,7 +92,7 @@ const PostJob = () => {
         initialValues: {
           jobTitle: "",
           location: "",
-          category:"",
+          requiredSkills:"",
           jobDescription:"",
           experience:"",
           careerLevel:"",
@@ -90,7 +138,7 @@ const PostJob = () => {
         </div>
       ) : null}
       <div>
-        <div className="fixed w-full">
+        <div className="fixed z-10 w-full">
           <CompanyNavbar />
         </div>
         <div className="px-3 ">
@@ -123,33 +171,52 @@ const PostJob = () => {
                     className="border w-full h-16 p-3 rounded-full"
                   />
                 </div>
-                <div className="w-1/2 pl-7">
-                  <small>Category</small>
+                <div className="w-1/2 pl-7 relative z-0">
+                  <small>Required Skills</small>
                   <br />
-                  <select
-                    name="category"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                  <input
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onClick={handleInputClick}
                     className="border w-full h-16 p-3 rounded-full"
-                  >
-                    <option value="">Select a category</option>
-                    <option value="Marketing & Communication">
-                      Marketing & Communication
-                    </option>
-                    <option value="Software Engineering">
-                      Software Engineering
-                    </option>
-                    <option value="Project Management">
-                      Project Management
-                    </option>
-                    <option value="Finance">Finance</option>
-                    <option value="Retail">Retail</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Manufacturing">Manufacturing</option>
-                    <option value="Business Development">
-                      Business Development
-                    </option>
-                  </select>
+                    autoComplete="off" // Disable browser suggestions
+                  />
+                  {isOpen && inputValue.length > 0 && (
+                    <div className="border rounded absolute w-full bg-white mt-1">
+                      <ul>
+                        {skillsList
+                          .filter((skill) =>
+                            skill
+                              .toLowerCase()
+                              .includes(inputValue.toLowerCase())
+                          )
+                          .map((skill) => (
+                            <li
+                              key={skill}
+                              className="p-2 cursor-pointer hover:bg-gray-100"
+                              onClick={() => handleSkillSelect(skill)}
+                            >
+                              {skill}
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  )}
+                  <div><br />
+                    <div>
+                      {selectedSkills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="bg-gray-200 px-2 py-1 m-1 rounded-full"
+                        >
+                          {skill}{" "}
+                          <button onClick={() => handleRemoveSkill(skill)}>
+                            &times;
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="mt-3">

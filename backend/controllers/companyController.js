@@ -48,7 +48,7 @@ const createjob = async (req, res)=>{
     const {
       jobTitle,
       location,
-      category,
+      requiredSkills,
       jobDescription,
       experience,
       careerLevel,
@@ -61,7 +61,7 @@ const createjob = async (req, res)=>{
     const newJob = new jobModel({
       jobTitle,
       location,
-      category,
+      requiredSkills,
       jobDescription,
       experience,
       careerLevel,

@@ -1,4 +1,5 @@
-const {userModel} = require("../models/user.model")
+const {userModel} = require("../models/user.model");
+const {jobModel} = require("../models/user.model");
 const bcrypt = require("bcryptjs")
 
 const register = async (req, res)=>{
@@ -64,6 +65,19 @@ const setup = async (req, res) => {
     }
 };
 
+const getskills = async (req, res)=>{
+    try {
+        
+
+    } catch (error) {
+        
+    } 
+}
+
+const getjobs = (req, res)=>{
+    const {skills} = req.body
+    console.log(skills);
+}
 
 
-module.exports = {register, login, setup}
+module.exports = {register, login, setup, getjobs}
